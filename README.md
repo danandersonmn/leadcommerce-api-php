@@ -33,36 +33,102 @@ require 'connection.php';
 Instantiate the connection :
 
 ```
-$store = new connection('http://[domain.com]', 'Identifier', 'Key');
+new connection('http://[domain.com]', 'Identifier', 'Key');
 ```
 
 
-Methods (PUT)
+Methods
 ---------------------------------
 
 List:
-
 ```
 $store->getList('API',$params);
 ```
 
 Info:
-
 ```
 $store->getInfo('API','INFO API',$params);
+
 ```
 ID:
-
 ```
 $store->getID('API',$params);
 ```
-Create:
 
+Create:
 ```
 $store->create('API',$params);
 ```
-Create:
 
+Update:
 ```
 $store->update('API',$params);
+```
+
+Examples
+---------------------------------
+List:
+```
+$store = new connection('http://www.leadcommerce.com', 'LCXXXXXXXXXXX', 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+$result = $store->getList('skus',array('status' => 1,'modify_start' => 0,'modify_end' => 1997473049));
+echo $result;
+```
+
+Info:
+```
+$store = new connection('http://www.leadcommerce.com', 'LCXXXXXXXXXXX', 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+$result = $store->getInfo('skus','stock_level',array('warehouse'=>1,'in_stock_modify_start'=>0,'in_stock_modify_end'=>1997473049,'low_inventory'=>false));
+echo $result;
+```
+
+ID:
+```
+$store = new connection('http://www.leadcommerce.com', 'LCXXXXXXXXXXX', 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+$result = $store->getID('customers',array('display_id' => array(1002,1003)));
+echo $result;
+```
+
+Create:
+```
+$insert = array('name'         => 'FX Commerce',
+                'status'       => 1,
+                'terms'        => 2,
+                'send_email'   => 0,
+                'addresses'    => array(array('full_name'    => 'Fx Commerce - San Diego',
+                                              'email'        => 'vendorfx@leadcommerce.web',
+                                              'address_1'    => '5000 Business Parkway',
+                                              'city'         => 'San Diego',
+                                              'region'       => 'United States',
+                                              'subregion'    => 'CA',
+                                              'phone'        => '619-555-1212',
+                                              'postal_code'  => '92103',
+                                              'default'      => 'yes'),
+                                        array('full_name'    => 'Fx Commerce - Los Angeles',
+                                              'email'        => 'vendorlafx@leadcommerce.web',
+                                              'address_1'    => '5000 Business Ave',
+                                              'city'         => 'Los Angeles',
+                                              'phone'        => '310-555-1958',
+                                              'region'       => 'United States',
+                                              'subregion'    => 'California',
+                                              'postal_code'  => '08759')),
+                'warehouses' => array(1));
+
+$store = new connection('http://www.leadcommerce.com', 'LCXXXXXXXXXXX', 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+$result = $store->create('vendors',array('inserts'=> array($insert)));
+echo $result;
+```
+
+Update:
+```
+$update = array('id'      => 2,
+                'first'   => 'Artimo',
+				        'last'   => 'Segimo',
+                'phone'   => '858-888-9999',
+			          'fax'     => '858-777-8888',
+				        'password' => 'abcdef22',
+				        'status' => '1');
+				        
+$store = new connection('http://www.leadcommerce.com', 'LCXXXXXXXXXXX', 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+$result = $store->update('customers',array('updates'=> array($update)));
+echo $result;
 ```
