@@ -122,11 +122,11 @@ Update:
 ```
 $update = array('id'      => 2,
                 'first'   => 'Artimo',
-				        'last'   => 'Segimo',
+				'last'   => 'Segimo',
                 'phone'   => '858-888-9999',
-			          'fax'     => '858-777-8888',
-				        'password' => 'abcdef22',
-				        'status' => '1');
+			    'fax'     => '858-777-8888',
+				'password' => 'abcdef22',
+				'status' => '1');
 				        
 $store = new connection('http://www.leadcommerce.com', 'LCXXXXXXXXXXX', 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
 $result = $store->update('customers',array('updates'=> array($update)));
