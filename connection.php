@@ -219,6 +219,25 @@ class connection
 	
 // ***********************************************************************//
 // 
+// ** adjustment
+// **
+// ** Accepts the resource to perform the request on for ID call
+// **
+// ** @param 		$resource string $resource a string to perform get on
+// ** @return 		results or var_dump error
+//
+// ***********************************************************************//	
+	public function adjustment($resource,$json) {
+
+		$url = $this->_path . '/api/v2/' .$resource."/adjustment.json";
+		$this->setMicrotime();
+		
+		$results = self::curlQuery($url,$json);
+		return $results;
+	}
+	
+// ***********************************************************************//
+// 
 // ** curlQuery
 // **
 // ** Performs a curl query to the instantiated class
