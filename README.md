@@ -138,7 +138,7 @@ $result = $store->update('customers',array('updates'=> array($update)));
 echo $result;
 ```
 
-Adjustment:
+Adjustment: (Note: For the inventory adjustment api only)
 ```
 $insert = array('id'       => 12,
                 'warehouse'  => 1,
