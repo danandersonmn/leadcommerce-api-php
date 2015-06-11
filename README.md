@@ -65,6 +65,11 @@ Update:
 $store->update('API',$params);
 ```
 
+Adjustment:
+```
+$store->adjustment('API',$params);
+```
+
 Examples
 ---------------------------------
 List:
@@ -130,5 +135,20 @@ $update = array('id'      => 2,
 				        
 $store = new connection('http://www.leadcommerce.com', 'LCXXXXXXXXXXX', 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
 $result = $store->update('customers',array('updates'=> array($update)));
+echo $result;
+```
+
+Adjustment:
+```
+$insert = array('id'       => 12,
+                'warehouse'  => 1,
+                'amount'     => 20,
+                'reason'     => 5
+                );
+
+
+
+$store = new connection('http://www.leadcommerce.com', 'LCXXXXXXXXXXX', 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+$result = $store->adjustment('skus',array('inserts'=> array($insert)));
 echo $result;
 ```
