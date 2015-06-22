@@ -132,8 +132,16 @@ class connection
 // ***********************************************************************//
 	public function getList($resource,$json) {
 
-		$url = $this->_path.'/api/v2/'.$resource.".json";
-        $this->setMicrotime();
+		if ($resource == 'fulfillment')
+		{
+			$url = $this->_path.'/api/v2/orders/'.$resource.".json";
+		}
+		else
+		{
+			$url = $this->_path.'/api/v2/'.$resource.".json";
+		}
+		
+        //$this->setMicrotime();
 		
 		$results = self::curlQuery($url,$json);
 		return $results;
@@ -190,8 +198,15 @@ class connection
 //
 // ***********************************************************************//	
 	public function create($resource,$json) {
-
-		$url = $this->_path . '/api/v2/' .$resource."/create.json";
+	
+		if ($resource == 'create_receivement')
+		{
+			$url = $this->_path.'/api/v2/purchaseorders/receiving.json';
+		}
+		else
+		{
+			$url = $this->_path . '/api/v2/' .$resource."/create.json";
+		}
 		$this->setMicrotime();
 		
 		$results = self::curlQuery($url,$json);
@@ -209,8 +224,16 @@ class connection
 //
 // ***********************************************************************//	
 	public function update($resource,$json) {
+	
+		if ($resource == 'update_fulfillment')
+		{
+			$url = $this->_path.'/api/v2/orders/'.$resource.".json";
+		}
+		else
+		{
+			$url = $this->_path . '/api/v2/' .$resource."/update.json";
+		}
 
-		$url = $this->_path . '/api/v2/' .$resource."/update.json";
 		$this->setMicrotime();
 		
 		$results = self::curlQuery($url,$json);
