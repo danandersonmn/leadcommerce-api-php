@@ -84,6 +84,10 @@ Info:
 $store = new connection('http://www.leadcommerce.com', 'LCXXXXXXXXXXX', 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
 $result = $store->getInfo('skus','stock_level',array('warehouse'=>1,'in_stock_modify_start'=>0,'in_stock_modify_end'=>1997473049,'low_inventory'=>false));
 echo $result;
+
+$store = new connection('http://www.leadcommerce.com', 'LCXXXXXXXXXXX', 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+$result = $store->getInfo('skus',array(3,8,9,45));
+echo $result;
 ```
 
 ID:
