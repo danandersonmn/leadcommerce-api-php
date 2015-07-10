@@ -7,10 +7,10 @@
 class connection
 {
 
-	static public $_path;
-	static private $_identifier;
-	static private $_key;
-	static private $_headers;
+	public $_path;
+	private $_identifier;
+	private $_key;
+	private $_headers;
 	private $_microtime;
 
 
@@ -54,7 +54,7 @@ class connection
 
         foreach( $fields as $field ) {
             if( preg_match('/([^:]+): (.+)/m', $field, $match) ) {
-                $match[1] = preg_replace('/(?<=^|[\x09\x20\x2D])./e', 'strtoupper("\0")', trim($match[1]));
+                $match[1] = preg_replace_callback('/(?<=^|[\x09\x20\x2D])./', function ($m){ return strtoupper($m[0]); }, trim($match[1]));
                 if( isset($retVal[$match[1]]) ) {
                     $retVal[$match[1]] = array($retVal[$match[1]], $match[2]);
                 } else {
@@ -108,7 +108,7 @@ class connection
 	{
 		$imicrotime = microtime(true);
 		$iTime = explode ('.', $imicrotime);
-		$microtime = (double)$itime[0].'.'.$iTime[1];
+		$microtime = (double)$iTime[0].'.'.$iTime[1];
 		if($microtime <=($this->_microtime + 0.2) && $this->_microtime > 0)
 		{
 		    //echo "in setmicrotime";
