@@ -136,6 +136,10 @@ class connection
 		{
 			$url = $this->_path.'/api/v2/orders/'.$resource.".json";
 		}
+		else if ($resource == 'redirect')
+		{
+			$url = $this->_path.'/api/v2/pages/'.$resource.".json";
+		}
 		else
 		{
 			$url = $this->_path.'/api/v2/'.$resource.".json";
@@ -202,6 +206,10 @@ class connection
 		if ($resource == 'create_receivement')
 		{
 			$url = $this->_path.'/api/v2/purchaseorders/receiving.json';
+		}
+		else if ($resource == 'create_redirect')
+		{
+			$url = $this->_path.'/api/v2/pages/create_redirect.json';
 		}
 		else
 		{
