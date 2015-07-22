@@ -211,6 +211,10 @@ class connection
 		{
 			$url = $this->_path.'/api/v2/pages/create_redirect.json';
 		}
+		else if ($resource == 'create_comment')
+		{
+			$url = $this->_path.'/api/v2/supporttickets/create_comment.json';
+		}
 		else
 		{
 			$url = $this->_path . '/api/v2/' .$resource."/create.json";
