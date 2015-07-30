@@ -86,7 +86,7 @@ $result = $store->getInfo('skus','stock_level',array('warehouse'=>1,'in_stock_mo
 echo $result;
 
 $store = new connection('http://www.leadcommerce.com', 'LCXXXXXXXXXXX', 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
-$result = $store->getInfo('customers','info_address',array(3,8,9,45));
+$result = $store->getInfo('customers','info_address',array("id"=>array(3,8,9,45)));
 echo $result;
 ```
 
