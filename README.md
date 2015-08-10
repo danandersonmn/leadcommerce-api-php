@@ -75,14 +75,14 @@ Examples
 List:
 ```
 $store = new connection('http://www.leadcommerce.com', 'LCXXXXXXXXXXX', 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
-$result = $store->getList('skus',array('status' => 1,'modify_start' => 0,'modify_end' => 1997473049));
+$result = $store->getList('SKUs',array('status' => 1,'modify_start' => 0,'modify_end' => 1997473049));
 echo $result;
 ```
 
 Info:
 ```
 $store = new connection('http://www.leadcommerce.com', 'LCXXXXXXXXXXX', 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
-$result = $store->getInfo('skus','stock_level',array('warehouse'=>1,'in_stock_modify_start'=>0,'in_stock_modify_end'=>1997473049,'low_inventory'=>false));
+$result = $store->getInfo('SKUs','stock_level',array('warehouse'=>1,'in_stock_modify_start'=>0,'in_stock_modify_end'=>1997473049,'low_inventory'=>false));
 echo $result;
 
 $store = new connection('http://www.leadcommerce.com', 'LCXXXXXXXXXXX', 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
@@ -153,6 +153,6 @@ $insert = array('id'       => 12,
 
 
 $store = new connection('http://www.leadcommerce.com', 'LCXXXXXXXXXXX', 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
-$result = $store->adjustment('skus',array('inserts'=> array($insert)));
+$result = $store->adjustment('SKUs',array('inserts'=> array($insert)));
 echo $result;
 ```
