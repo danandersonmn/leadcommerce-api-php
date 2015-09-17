@@ -79,20 +79,84 @@ class connection
 // ***********************************************************************//
     public function error($body, $url, $json, $type) {
     	global $error;
-    	if (isset($json)) {
-	    	$results = json_decode($body, true);
-			$results = $results[0];
+		if(isJsonString($body) == false)
+		{
 			$results['type'] = $type;
 			$results['url'] = $url;
 			$results['payload'] = $json;
-			$error = $results;
-		} else {
-			$results = json_decode($body, true);
-			$results = $results[0];
-			$results['type'] = $type;
-			$results['url'] = $url;
+			$results['message'] = 'Unknown Error';
 			$error = $results;
 		}
+		else
+		{
+			if (isset($json)) {
+				$results = json_decode($body, true);
+				$results = $results[0];
+				$results['message'] = 'Catchable Error';
+				$results['type'] = $type;
+				$results['url'] = $url;
+				$results['payload'] = $json;
+				$error = $results;
+			} else {
+				$results = json_decode($body, true);
+				$results = $results[0];
+				$results['message'] = 'Catchable Error';
+				$results['type'] = $type;
+				$results['url'] = $url;
+				$error = $results;
+			}
+		}
+    }
+	
+	
+// ***********************************************************************//
+// 
+// ** isJsonString
+// **
+// ** Checks if the string is valid json
+// **
+// ** @return 		bool
+//
+// ***********************************************************************//
+    private static function isJsonString($string)
+	{
+			// make sure provided input is of type string
+		if (!is_string($string)) {
+			return false;
+		}
+	
+		// trim white spaces
+		$string = trim($string);
+	
+		// get first character
+		$firstChar = substr($string, 0, 1);
+	
+		// get last character
+		$lastChar = substr($string, -1);
+	
+		// check if there is a first and last character
+		if (!$firstChar || !$lastChar) {
+			return false;
+		}
+	
+		// make sure first character is either { or [
+		if ($firstChar !== '{' && $firstChar !== '[') {
+			return false;
+		}
+	
+		// make sure last character is either } or ]
+		if ($lastChar !== '}' && $lastChar !== ']') {
+			return false;
+		}
+	
+		// let's leave the rest to PHP.
+		// try to decode string
+		json_decode($string);
+	
+		// check if error occurred
+		$isValid = json_last_error() === JSON_ERROR_NONE;
+	
+		return $isValid;
     }
 
 // ***********************************************************************//
