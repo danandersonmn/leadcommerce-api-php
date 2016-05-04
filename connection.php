@@ -62,8 +62,10 @@ class connection
                 }
             }
         }
-        if ($retVal['LC-Limit-Remaining'] <= 100) {
-        	sleep(60);
+		if(isset($retVal['LC-Limit-Remaining'])) {
+            if ($retVal['LC-Limit-Remaining'] <= 100) {
+                sleep(60);
+            }
         }
     }
 
@@ -79,7 +81,7 @@ class connection
 // ***********************************************************************//
     public function error($body, $url, $json, $type) {
     	global $error;
-		if(isJsonString($body) == false)
+		if($this->isJsonString($body) == false)
 		{
 			$results['type'] = $type;
 			$results['url'] = $url;
