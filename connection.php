@@ -5,14 +5,16 @@
  *
  * Orignal Author
  * @author Lead Commerce <support@leadcommerce.com>
- 
- //even though comments state that it will return or var_dump it will not var_dump
- //when troubleshooting I highly recommend checking the values handled in the error function, as well as gathering the raw output
- //from the curl requests.  Lead Commerce documentation can be somewhat unclear when it comes to working with some of the apis.
- //the format of the json and required values may not be clearly described in the api docs. 
- 
- 
+ *
+ *
+ *
+ * //even though comments state that it will return or var_dump it will not var_dump
+ * //when troubleshooting I highly recommend checking the values handled in the error function, as well as gathering the raw output
+ * //from the curl requests.  Lead Commerce documentation can be somewhat unclear when it comes to working with some of the apis.
+ * //the format of the json and required values may not be clearly described in the api docs. 
+ *
  */
+
 class connection
 {
 
