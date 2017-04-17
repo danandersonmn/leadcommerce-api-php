@@ -1,8 +1,17 @@
 <?php
 /**
  * Class to instantiate different api connections
- * 
+ * Comments Added By Dan
+ *
+ * Orignal Author
  * @author Lead Commerce <support@leadcommerce.com>
+ 
+ //even though comments state that it will return or var_dump it will not var_dump
+ //when troubleshooting I highly recommend checking the values handled in the error function, as well as gathering the raw output
+ //from the curl requests.  Lead Commerce documentation can be somewhat unclear when it comes to working with some of the apis.
+ //the format of the json and required values may not be clearly described in the api docs. 
+ 
+ 
  */
 class connection
 {
@@ -72,7 +81,8 @@ class connection
 // ***********************************************************************//
 // 
 // ** error
-// **
+// ** TODO This error function does not handle all types of errors and can results in a undefined offset 0 php notice
+	
 // ** Make data dump in case of error
 // **
 // ** @param 		$body, $url, $json, $type required for the class
@@ -101,7 +111,7 @@ class connection
 				$error = $results;
 			} else {
 				$results = json_decode($body, true);
-				$results = $results[0];
+				$results = $results[0];  // May experience undefined offset: 0.  
 				$results['message'] = 'Catchable Error';
 				$results['type'] = $type;
 				$results['url'] = $url;
@@ -174,7 +184,7 @@ class connection
 	{
 		$imicrotime = microtime(true);
 		$iTime = explode ('.', $imicrotime);
-		$microtime = (double)$iTime[0].'.'.$iTime[1];
+		$microtime = (double)$iTime[0].'.'.$iTime[1];  //may experience undefined offset 1
 		if($microtime <=($this->_microtime + 0.2) && $this->_microtime > 0)
 		{
 		    //echo "in setmicrotime";
