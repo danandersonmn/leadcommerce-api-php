@@ -1,6 +1,13 @@
 Lead Commerce API Client
 ======================
 
+This project in its present state is the same functional code as forked.
+Comments have been added in a few places as a reminder to myself,
+if I find the time I will update to include changes that I have made.
+
+
+
+
 PHP client for connecting to the Lead Commerce V2 REST API.
 
 To learn more about the Lead Commerce API, visit:
